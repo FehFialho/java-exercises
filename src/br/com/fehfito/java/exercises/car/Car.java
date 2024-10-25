@@ -1,16 +1,15 @@
-package br.com.fehfito.exercicios.models;
+package br.com.fehfito.java.exercises.car;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Car {
-    String nomeModelo = "";
-    private int anoLancamento = 0;
     private double precoMedio = 0;
     private double preco2020 = 0;
     private double preco2021 = 0;
     private double preco2022 = 0;
 
     Scanner read = new Scanner(System.in);
+    DecimalFormat df = new DecimalFormat("00.00");
 
     public void definePreco(){
         int n = 0;
@@ -80,10 +79,38 @@ public class Car {
         }
     }
 
-    public void calculaPrecoMedio(){
-        DecimalFormat format = new DecimalFormat("#.00");
+    public String calculaPrecoMedio(){
         precoMedio = (preco2020 + preco2021 + preco2022) / 3;
-        System.out.println("O preço médio foi de " + format.format(precoMedio) + "R$");
+
+        return df.format(precoMedio);
+    }
+
+    public double calculaMenorPreco() {
+        double menorPreco = preco2020;
+
+        if (preco2021 < menorPreco) {
+            menorPreco = preco2021;
+        }
+
+        if (preco2022 < menorPreco) {
+            menorPreco = preco2022;
+        }
+
+        return menorPreco;
+    }
+
+    public double calculaMaiorPreco(){
+        double maiorPreco = preco2020;
+
+        if (preco2021 > maiorPreco){
+            maiorPreco = preco2021;
+        }
+
+        if (preco2022 > maiorPreco){
+            maiorPreco = preco2022;
+        }
+
+        return maiorPreco;
     }
 
     public double getPreco2022() {
@@ -109,5 +136,4 @@ public class Car {
     public void setPreco2020(double preco2020) {
         this.preco2020 = preco2020;
     }
-
 }
