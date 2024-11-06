@@ -3,48 +3,34 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Car {
+
     private double precoMedio = 0;
-    private double preco2020 = 0;
-    private double preco2021 = 0;
-    private double preco2022 = 0;
+    private double precoAno1 = 0;
+    private double precoAno2 = 0;
+    private double precoAno3 = 0;
+
+    String modelo;
+
+    public void definirModelo(String modelo) {
+        this.modelo = modelo;
+    }
 
     Scanner read = new Scanner(System.in);
     DecimalFormat df = new DecimalFormat("00.00");
 
-    public void definePreco(){
-        int n = 0;
+    public void exibirInfo() {
+        System.out.println("Modelo: " + modelo);
+        System.out.println("Preço Ano 1: " + precoAno1);
+        System.out.println("Preço Ano 2: " + precoAno2);
+        System.out.println("Preço Ano 3: " + precoAno3);
+        System.out.println("Menor Preço: " + calculaMenorPreco());
+        System.out.println("Maior Preço: " + calculaMaiorPreco());
+    }
 
-        while( n>4 || n<1 ){
-            System.out.println("Insira a opção desejada:\n" +
-                    "1 - Inserir valor para 2020\n" +
-                    "2 - Inserir valor para 2021\n" +
-                    "3 - Inserir valor para 2022\n"  +
-                    "4 - Sair\n");
-            n = read.nextInt();
-            switch (n){
-                case 1:
-                    System.out.println("Insira valor para 2020:");
-                    setPreco2020(read.nextDouble());
-                    n = 0;
-                    break;
-                case 2:
-                    System.out.println("Insira valor para 2021:");
-                    setPreco2021(read.nextDouble());
-                    n = 0;
-                    break;
-                case 3:
-                    System.out.println("Insira valor para 2022:");
-                    setPreco2022(read.nextDouble());
-                    n = 0;
-                    break;
-                case 4:
-                    System.out.println("Finalizando o programa...");
-                    break;
-                default:
-                    System.out.println("Insira uma opção válida!");
-                    break;
-            }
-        }
+    public void definePreco(double precoAno1, double precoAno2, double precoAno3) {
+        this.precoAno1 = precoAno1;
+        this.precoAno2 = precoAno2;
+        this.precoAno3 = precoAno3;
     }
 
     public void mostraPreco(){
@@ -58,15 +44,15 @@ public class Car {
             n = read.nextInt();
             switch (n){
                 case 1:
-                    System.out.println("O valor de 2020 é: " + getPreco2020());
+                    System.out.println("O valor de 2020 é: " + getPrecoAno1());
                     n = 0;
                     break;
                 case 2:
-                    System.out.println("O valor de 2021 é: " + getPreco2021());
+                    System.out.println("O valor de 2021 é: " + getPrecoAno2());
                     n = 0;
                     break;
                 case 3:
-                    System.out.println("O valor de 2022 é: " + getPreco2022());
+                    System.out.println("O valor de 2022 é: " + getPrecoAno3());
                     n = 0;
                     break;
                 case 4:
@@ -80,60 +66,48 @@ public class Car {
     }
 
     public String calculaPrecoMedio(){
-        precoMedio = (preco2020 + preco2021 + preco2022) / 3;
+        precoMedio = (precoAno1 + precoAno2 + precoAno3) / 3;
 
         return df.format(precoMedio);
     }
 
     public double calculaMenorPreco() {
-        double menorPreco = preco2020;
+        double menorPreco = precoAno1;
 
-        if (preco2021 < menorPreco) {
-            menorPreco = preco2021;
+        if (precoAno2 < menorPreco) {
+            menorPreco = precoAno2;
         }
 
-        if (preco2022 < menorPreco) {
-            menorPreco = preco2022;
+        if (precoAno3 < menorPreco) {
+            menorPreco = precoAno3;
         }
 
         return menorPreco;
     }
 
     public double calculaMaiorPreco(){
-        double maiorPreco = preco2020;
+        double maiorPreco = precoAno1;
 
-        if (preco2021 > maiorPreco){
-            maiorPreco = preco2021;
+        if (precoAno2 > maiorPreco){
+            maiorPreco = precoAno2;
         }
 
-        if (preco2022 > maiorPreco){
-            maiorPreco = preco2022;
+        if (precoAno3 > maiorPreco){
+            maiorPreco = precoAno3;
         }
 
         return maiorPreco;
     }
 
-    public double getPreco2022() {
-        return preco2022;
+    public double getPrecoAno1() {
+        return precoAno1;
     }
 
-    public double getPreco2021() {
-        return preco2021;
+    public double getPrecoAno2() {
+        return precoAno2;
     }
 
-    public double getPreco2020() {
-        return preco2020;
-    }
-
-    public void setPreco2022(double preco2022) {
-        this.preco2022 = preco2022;
-    }
-
-    public void setPreco2021(double preco2021) {
-        this.preco2021 = preco2021;
-    }
-
-    public void setPreco2020(double preco2020) {
-        this.preco2020 = preco2020;
+    public double getPrecoAno3() {
+        return precoAno3;
     }
 }

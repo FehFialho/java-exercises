@@ -1,14 +1,15 @@
 package br.com.fehfito.java.exercises.car;
 
 public class CarModel extends Car {
-    String nomeModelo = "";
-    public void defineModelo(){
+
+    String modeloAlterado;
+    public void alteraModelo(){
         System.out.println("Insira o modelo do seu carro:");
-        setNomeModelo(read.nextLine());
-        System.out.println("Você definiu o modelo como " + nomeModelo + "!");
+        setModeloAlterado(read.nextLine());
+        System.out.println("Você definiu o modelo como " + modeloAlterado + "!");
     }
 
-    public void setNomeModelo(String nomeModelo) {
-        this.nomeModelo = nomeModelo;
+    public void setModeloAlterado(String modeloAlterado) {
+        this.modeloAlterado = modeloAlterado;
     }
 }
